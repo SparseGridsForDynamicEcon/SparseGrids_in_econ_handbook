@@ -40,7 +40,7 @@ We provide implementations which use python 3.
 
 First, we provide our an implementation of the analytic model in two forms. A [jupyter-notebook](https://jupyter.org/) that is self-contained and also contains the model and all relevant equations:
 
-[![Generic badge](https://img.shields.io/badge/jupyter%20nbviewer-ASG-green)](https://nbviewer.jupyter.org/github.com/sischei/handbook_sparse_grids/blob/main/Analytical_example/2D_example.ipynb)
+[![Generic badge](https://img.shields.io/badge/jupyter%20nbviewer-ASG-green)](https://nbviewer.jupyter.org/https://github.com/SparseGridsForDynamicEcon/SparseGrids_in_econ_handbook/blob/main/Analytical_example/2D_example.ipynb)
 
 as well as a plain python script, which can be executed from the command line:
 
