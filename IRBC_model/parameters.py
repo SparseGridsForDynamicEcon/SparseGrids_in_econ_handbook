@@ -1,0 +1,64 @@
+"""
+This file sets the economic parameters as well as the technical parameters that
+govern the time iteration and the error computation process.
+
+"""
+
+import numpy as np
+
+## Economic parameters
+
+# Risk aversion
+gamma = 1.0
+# Discount factor
+betta = 0.99
+# Capital share of income
+zeta = 0.36
+# Depreciation rate
+delta = 0.01
+# Persistence of TFP shocks
+rhoZ = 0.95
+# Standard deviation of TFP shocks
+sigE = 0.01
+# Intensity of capital adjustment costs
+kappa = 0.5
+# Steady state for capital
+k_ss = 1.0
+# Aggregate productivity
+A_tfp = (1.0-betta*(1.0-delta))/(zeta*betta)
+# Welfare weight
+pareto = A_tfp**(1.0/gamma)
+
+# Number of countries
+nCountries = 2
+# Number of shocks (Country-specific shocks + aggregate shock)
+nShocks = nCountries+1
+
+# Lower bound for capital
+kMin = 0.8
+# Upper bound for capital
+kMax = 1.2
+# Lower bound for TFP
+aMin = -0.8*sigE/(1.0-rhoZ)
+# Upper bound for TFP
+aMax = 0.8*sigE/(1.0-rhoZ)
+
+
+## Technical parameters
+
+# Iteration to start at (start from scratch -- numstart =0; restart: numstart >0)
+numstart = 0
+# Maximum number of iterations
+maxiter = 100
+# Iteration at which the refinement starts
+iterRefStart = 25
+# Convergence criterion in time iteration
+tol_ti = 1e-4
+# Number of random draws for the error computation
+TT = 10000
+# Number of burn-in periods for SIMULATION
+burnin = 1000
+# Location where data is stored
+data_location = "data/"
+# Frequency of saving grid
+savefreq = 10
