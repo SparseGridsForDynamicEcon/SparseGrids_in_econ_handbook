@@ -19,7 +19,7 @@ Thus, all illustrative code examples are using [Tasmanian](https://tasmanian.orn
 ### The full review article can be found here
 * [LINK TO REVIEW](TBA)
 
-### Illustrative example
+### Illustrative examples
 
 **Analytical Example:** To foster the basic intuition on how to use sparse grids as approximation method, we demonstrate their ability to efficiently interpolate the following n-dimensional (non-smooth) function
 
