@@ -38,7 +38,7 @@ We generate sparse grid as well as adaptive sparse grid approximations to the fu
 
 We provide implementations which use python 3.
 
-First, we provide our an implementation of the analytic model in two forms. A [jupyter-notebook](https://jupyter.org/) that is self-contained and also contains the model and all relevant equations:
+First, we provide an implementation of the analytic model in two forms. A [jupyter-notebook](https://jupyter.org/) that is self-contained:
 
 [![Generic badge](https://img.shields.io/badge/jupyter%20nbviewer-ASG-green)](https://nbviewer.jupyter.org/github/SparseGridsForDynamicEcon/SparseGrids_in_econ_handbook/blob/master/Analytical_example/2D_example.ipynb)
 
