@@ -5,7 +5,7 @@
 </p>
 
 Sparse grid methods are a versatile tool to compute recursive equilibria in dynamic stochastic economic models. This code repository contains materials
-accompanying the review article entitled ["Sparse grids for dynamic economic models"](TBA). 
+accompanying the review article entitled ["Sparse grids for dynamic economic models"](doc). 
 
 The goal of this repository is to make sparse grid methods easily accessible to the computational economics and finance community. 
 Thus, all illustrative code examples are using [Tasmanian](https://tasmanian.ornl.gov), a high-quality open source sparse grid library. 
@@ -30,9 +30,9 @@ e\nd{align*}
 
 We generate sparse grid as well as adaptive sparse grid approximations to the function and measure their accuracy as follows: We randomly generate 10,000 uniformly distributed test points, and compute the maximum error and the L2-error.
 
-**Benchmark model in discrete time:** To illustrate how (adaptive) sparse grids can be applied to solve economic models in discrete time, we provide an example in python, which solves a multi-country real business cycle model with irreversible invenstment, as presented in [Section 3 of the review article](TBA) (for more details on this model, see also [Brumm & Scheidegger (2017)](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA12216)).
+**Benchmark model in discrete time:** To illustrate how (adaptive) sparse grids can be applied to solve economic models in discrete time, we provide an example in python, which solves a multi-country real business cycle model with irreversible invenstment, as presented in [Section 3 of the review article](doc) (for more details on this model, see also [Brumm & Scheidegger (2017)](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA12216)).
 
-**Benchmark model in continuous time:** To illustrate how (adaptive) sparse grids can be applied to solve economic models in continuous time, we provide an example which solves an Aiyagari-type model with a jump in the capital tax rate, as presented in [Section 4 of the review article](TBA) (for more details on this model, see also [Schaab (2020)](https://scholar.harvard.edu/andreasschaab/publications/micro-and-macro-uncertainty))
+**Benchmark model in continuous time:** To illustrate how (adaptive) sparse grids can be applied to solve economic models in continuous time, we provide an example which solves an Aiyagari-type model with a jump in the capital tax rate, as presented in [Section 4 of the review article](doc) (for more details on this model, see also [Schaab (2020)](https://scholar.harvard.edu/andreasschaab/publications/micro-and-macro-uncertainty))
 
 ### Usage
 
