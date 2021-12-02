@@ -17,7 +17,7 @@ Thus, all illustrative code examples are using [Tasmanian](https://tasmanian.orn
 * [Simon Scheidegger](https://sites.google.com/site/simonscheidegger/) (Department of Economics, University of Lausanne)
 
 ### The full review article can be found here
-* [LINK TO REVIEW](TBA)
+* [LINK TO REVIEW](doc)
 
 ### Illustrative examples
 
