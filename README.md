@@ -79,13 +79,14 @@ This work is generously supported by grants from the [Swiss National Science Fou
 ## Citation
 Please cite this handbook in your publications if it helps your research:
 
-Brumm, Johannes and Krause, Christopher and Schaab, Andreas and Scheidegger, Simon (2021); Sparse grids for dynamic economic models
+Brumm, Johannes and Krause, Christopher and Schaab, Andreas and Scheidegger, Simon (2021); [Sparse grids for dynamic economic models](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3979412)
 
 
 ```
 @article{SG_in_econ_handbook,
 author = {Brumm, Johannes and Krause, Christopher and Schaab, Andreas and Scheidegger, Simon},
 title = {Sparse Grids for Dynamic Economic Models},
+journal={Available at SSRN 3979412},
 year = {2021}
 }
 ```
