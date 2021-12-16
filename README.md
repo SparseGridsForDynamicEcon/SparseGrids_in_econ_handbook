@@ -54,7 +54,7 @@ The benchmark IRBC model code can be found here:
 
 The benchmark Aiyagari model code can be found here:
 
-[![Generic badge 4](https://img.shields.io/badge/benchmark-Aiyagari-green)](TBA)
+[![Generic badge 4](https://img.shields.io/badge/benchmark-Aiyagari-green)](https://github.com/schaab-lab/sparseecon)
 
 
 ### Prerequisites / Installation
