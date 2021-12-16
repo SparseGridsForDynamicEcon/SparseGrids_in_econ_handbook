@@ -1,6 +1,6 @@
 # The IRBC Benchmark Model
 
-This script provides the code used to model and solve the benchmark model in section 3 of the review article paper by [Brumm, Krause, Schaab, & Scheidegger (2021)](TBA). 
+This script provides the code used to model and solve the benchmark model in section 3 of the review article paper by [Brumm, Krause, Schaab, & Scheidegger (2021)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3979412). 
 
 ### Prerequisites / Installation
 
