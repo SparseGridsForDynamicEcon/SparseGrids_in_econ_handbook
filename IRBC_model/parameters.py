@@ -29,10 +29,23 @@ A_tfp = (1.0-betta*(1.0-delta))/(zeta*betta)
 # Welfare weight
 pareto = A_tfp**(1.0/gamma)
 
+# Type of IRBC model ({'smooth','non-smooth'})
+typeIRBC = 'non-smooth'
+# Type of numerical integration: ({'GH-quadrature','monomials_2d','monomials_power'})
+typeInt = 'monomials_power'
+
 # Number of countries
 nCountries = 2
 # Number of shocks (Country-specific shocks + aggregate shock)
 nShocks = nCountries+1
+# Number of policies (nCountries+1 for smooth IRBC, nCountries*2+1 for nonsmooth)
+if typeIRBC=='non-smooth':
+    nPols = nCountries*2+1
+elif typeIRBC=='smooth':
+    nPols = nCountries+1
+else:
+    print('Error in determining the type of IRBC')
+    exit()
 
 # Lower bound for capital
 kMin = 0.8
@@ -59,6 +72,7 @@ TT = 10000
 # Number of burn-in periods for SIMULATION
 burnin = 1000
 # Location where data is stored
-data_location = "data/"
+data_location_nonsmooth = "data/data_nonsmooth/"
+data_location_smooth = "data/data_smooth/"
 # Frequency of saving grid
 savefreq = 10

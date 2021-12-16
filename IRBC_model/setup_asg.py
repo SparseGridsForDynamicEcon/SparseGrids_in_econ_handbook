@@ -17,7 +17,7 @@ from parameters import *
 # Number of dimensions (capital stock and tfp for each country)
 gridDim = nCountries*2
 # Number of outputs (capital policy & multiplier for each country + ARC multiplier)
-gridOut = nCountries*2+1
+gridOut = nPols
 # Grid level (we start with a sparse grid of level 3)
 gridDepth = 2
 # 1=linear, 2=quadratic, 3=cubic
@@ -59,7 +59,7 @@ dimRef = -1
 typeRefinement = 'classic'
 # Scale correction in the refinement process:
 # We only let the capital policies of each country determine the addition of grid points
-scaleCorr = np.zeros(nCountries*2+1)
+scaleCorr = np.zeros(nPols)
 scaleCorr[0:nCountries] = 1
 
 
@@ -67,12 +67,14 @@ scaleCorr[0:nCountries] = 1
 #                             Initialization                                   #
 ################################################################################
 
-polGuess = np.zeros((aNum,2*nCountries+1))
+polGuess = np.zeros((aNum,nPols))
 
 # Guesses for the capital policies and investment constraint multipliers
 for i0 in range(nCountries):
     polGuess[:,i0] = aPoints[:,i0]
-    polGuess[:,nCountries+1+i0] = -delta*aPoints[:,i0]
+
+    if typeIRBC=='non-smooth':
+        polGuess[:,nCountries+1+i0] = -delta*aPoints[:,i0]
 
 # Guess for the aggregate ressource constraint multiplier
 for i1 in range(nCountries):

@@ -26,11 +26,14 @@ def sysOfEqs(x,state,grid):
     # Policy values
     capPolicies = x[0:nCountries]
     lamb = x[nCountries]
-    gzAlphas = x[nCountries+1:]
 
-    # Garcia-Zengwill transformation of the occasionally binding constraints
-    gzAlphaPlus = np.maximum(0.0,gzAlphas)
-    gzAlphaMinus = np.maximum(0.0,-gzAlphas)
+    if typeIRBC=='non-smooth':
+
+        gzAlphas = x[nCountries+1:]
+
+        # Garcia-Zengwill transformation of the occasionally binding constraints
+        gzAlphaPlus = np.maximum(0.0,gzAlphas)
+        gzAlphaMinus = np.maximum(0.0,-gzAlphas)
 
     # Computation of integrands
     Integrands = ExpectFOC(capPolicies, state, grid)
@@ -38,15 +41,28 @@ def sysOfEqs(x,state,grid):
     IntResult = np.empty(nCountries)
 
     for iint in range(nCountries):
-        IntResult[iint] = np.dot(GHweights,Integrands[:,iint])
+        IntResult[iint] = np.dot(IntWeights,Integrands[:,iint])
 
-    res = np.zeros(nCountries*2+1)
-    
+    res = np.zeros(nPols)
+
     # Computation of residuals of the equilibrium system of equations
-    for ires in range(nCountries):
-        res[ires] = (betta*IntResult[ires] + gzAlphaPlus[ires])/(1.0 + AdjCost_ktom(capStates[ires],capPolicies[ires])) - lamb
-        res[nCountries+1+ires] = capPolicies[ires] - capStates[ires]*(1.0-delta) - gzAlphaMinus[ires]
 
+    if typeIRBC=='non-smooth':
+
+        # Euler equations & GZ alphas
+        for ires in range(nCountries):
+            res[ires] = (betta*IntResult[ires] + gzAlphaPlus[ires])\
+                            /(1.0 + AdjCost_ktom(capStates[ires],capPolicies[ires])) - lamb
+            res[nCountries+1+ires] = capPolicies[ires] - capStates[ires]*(1.0-delta) - gzAlphaMinus[ires]
+
+    else:
+
+        # Euler equations
+        for ires in range(nCountries):
+            res[ires] = betta*IntResult[ires]/(1.0 + AdjCost_ktom(capStates[ires],capPolicies[ires])) - lamb
+
+
+    # Aggregate resource constraint
     for ires2 in range(nCountries):
         res[nCountries] += F(capStates[ires2],tfpStates[ires2]) + (1.0-delta)*capStates[ires2] - capPolicies[ires2]\
                             - AdjCost(capStates[ires2],capPolicies[ires2]) - (lamb/pareto)**(-1.0/gamma)

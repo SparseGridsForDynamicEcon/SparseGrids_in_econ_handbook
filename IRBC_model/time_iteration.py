@@ -38,14 +38,14 @@ def ti_step(grid,pol_guess,gridZero):
     aNumAdd = grid.getNumNeeded()
 
     # Array for intermediate update step
-    polInt = np.zeros((aNumAdd,2*nCountries+1))
+    polInt = np.zeros((aNumAdd,nPols))
 
     # Time Iteration step
     for ii1 in range(aNumAdd):
 
         state = aPoints1[ii1]
         pol = pol_guess[ii1,:]
-        root = optimize.fsolve(sysOfEqs, pol, args=(state,gridZero))
+        root= optimize.fsolve(sysOfEqs, pol, args=(state,gridZero))
         polInt[ii1,:] = root
 
     # Add the new function values to grid1
@@ -66,21 +66,26 @@ def refine(grid):
     aNumLoad = grid.getNumLoaded()
     # Scaling to only allow for those policies that are supposed to
     # determine the refinement process (in this case only the capital policies)
-    scaleCorrMat = np.zeros((aNumLoad,2*nCountries+1))
-    scaleCorrMat[:,0:2*nCountries+2] = scaleCorr
+    scaleCorrMat = np.zeros((aNumLoad,nPols))
+    scaleCorrMat[:,0:nPols+1] = scaleCorr
 
     # Refine the grid based on the surplus coefficients
     grid.setSurplusRefinement(surplThreshold, dimRef, typeRefinement, [], scaleCorrMat)
 
     if (grid.getNumNeeded()>0):
 
-        # Get the new points and the number of points
-        nwpts = grid.getNeededPoints()
-        aNumNew = grid.getNumNeeded()
+	    # Get the new points and the number of points
+	    nwpts = grid.getNeededPoints()
+	    aNumNew = grid.getNumNeeded()
 
-        # We assign (for now) function values through interpolation
-        pol_guess = np.zeros((aNumNew,2*nCountries+1))
-        pol_guess = grid.evaluateBatch(nwpts)
+	    # We assign (for now) function values through interpolation#
+	    pol_guess = np.zeros((aNumNew,nPols))
+	    pol_guess = grid.evaluateBatch(nwpts)
+
+    else:
+
+	    pol_guess = []
+
 
     return grid, pol_guess
 
@@ -117,9 +122,9 @@ def policy_update(gridOld,gridNew):
 
     # 1) Compute the Sup-Norm
 
-    metricAux = np.zeros(2*nCountries+1)
+    metricAux = np.zeros(nPols)
 
-    for imet in range(2*nCountries+1):
+    for imet in range(nPols):
         metricAux[imet] = np.amax(np.abs(polGuessTr0[:,imet]-polGuessTr1[:,imet]))
 
     metricSup = np.amax(metricAux)
@@ -128,18 +133,18 @@ def policy_update(gridOld,gridNew):
 
     metricL2 = 0.0
 
-    for imetL2 in range(2*nCountries+1):
+    for imetL2 in range(nPols):
         metricL2 += np.sum((np.abs(polGuessTr0[:,imetL2]-polGuessTr1[:,imetL2]))**2)
 
-    metricL2 = (metricL2/(aNumTot*(2*nCountries+1)))**0.5
+    metricL2 = (metricL2/(aNumTot*nPols))**0.5
 
     metric = np.minimum(metricL2,metricSup)
 
     # Now update pol_guess and grid
 
-    polGuess = np.zeros((aNumTot,2*nCountries+1))
+    polGuess = np.zeros((aNumTot,nPols))
 
-    for iupd in range(2*nCountries+1):
+    for iupd in range(nPols):
         polGuess[:,iupd] = 0.5*polGuessTr0[:,iupd] + 0.5*polGuessTr1[:,iupd]
 
     gridOld = Tasmanian.copyGrid(gridNew)
@@ -154,7 +159,10 @@ def policy_update(gridOld,gridNew):
 
 def save_grid(grid,iter):
 
-    grid.write(data_location + "grid_iter_" + str(iter+1) + ".txt")
-    
+    if typeIRBC=='non-smooth':
+        grid.write(data_location_nonsmooth + "grid_iter_" + str(iter+1) + ".txt")
+    else:
+        grid.write(data_location_smooth + "grid_iter_" + str(iter+1) + ".txt")
+
 
     return

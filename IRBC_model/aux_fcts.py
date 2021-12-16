@@ -36,18 +36,11 @@ def Fk(capital,sh):
 
 def AdjCost(ktod,ktom):
 
-    captod = ktod
-    captom = ktom
+    captod = np.maximum(ktod,1e-6)
+    captom = np.maximum(ktom,1e-6)
 
-    if (captod < 1e-6):
-        print("Error - Today's Capital Stock is negative in AdjCost")
-        captod = 1e-6
-    elif (captom < 1e-6):
-        print("Error - Tomorrow's Capital Stock is negative in AdjCost")
-        captom = 1e-6
-    else:
-        j = captom/captod - 1.0
-        Adj_cost = 0.5 * kappa * j * j * captod
+    j = captom/captod - 1.0
+    Adj_cost = 0.5 * kappa * j * j * captod
 
     return Adj_cost
 
@@ -74,17 +67,11 @@ def AdjCost_k(ktod,ktom):
 
 def AdjCost_ktom(ktod,ktom):
 
-    captod = ktod
-    captom = ktom
+    captod = np.maximum(ktod,1e-6)
+    captom = np.maximum(ktom,1e-6)
 
-    if (captod < 1e-6):
-        print("Error - Today's Capital Stock is negative in AdjCost_ktom")
-        captod = 1e-6
-    elif (captom < 1e-6):
-        print("Error - Tomorrow's Capital Stock is negative in AdjCost_ktom")
-        captom = 1e-6
-    else:
-        j = captom/captod - 1.0
-        AdjCostktom = kappa * j
-        
+    j = captom/captod - 1.0
+    AdjCostktom = kappa * j
+
+
     return AdjCostktom

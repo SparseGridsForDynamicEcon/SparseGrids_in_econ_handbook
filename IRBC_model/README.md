@@ -55,6 +55,15 @@ command in the terminal:
 The grid structure after the last time iteration step can be found in `./data` and will be loaded directly.
 
 
+## Model Versions
+
+This code solves the IRBC model both with and without irreversible investment. In parameters.py, there is the 
+variable `typeIRBC` which can take the values `non-smooth` and `smooth`, indicating the respective model version.
+
+There are two folders in `./data` containing plots and .txt-files of policy functions as well as stored grid
+structures in .txt-files for both model versions.
+
+
 ## Code Organisation
 
 The code on the IRBC model consists of the following files:

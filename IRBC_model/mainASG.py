@@ -90,7 +90,7 @@ load_flag = args.load_flag
 if args.load_flag:
 
     print('Postprocessing only.')
-    
+
     # Construct the grid structure
     gridFinal = Tasmanian.TasmanianSparseGrid()
     # Read the properties from grid_final.txt
@@ -129,6 +129,7 @@ else:
             # We start the refinement process after a given number of iterations
             if (iter0>iterRefStart):
                 grid1,polGuess1 = time_iter.refine(grid1)
+                #grid1 = time_iter.refine(grid1)
 
             # Track the grid level
             ilev += 1
@@ -144,7 +145,10 @@ else:
         if (metric<tol_ti):
             break
 
-    grid1.write(data_location + "grid_final.txt")
+    if typeIRBC=='non-smooth':
+        grid1.write(data_location_nonsmooth + "grid_final.txt")
+    else:
+        grid1.write(data_location_smooth + "grid_final.txt")
 
     error_sim = post.errors_sim(grid1)
     errors_ss = post.errors_ss(grid1)
