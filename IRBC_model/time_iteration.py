@@ -45,8 +45,8 @@ def ti_step(grid,pol_guess,gridZero):
 
         state = aPoints1[ii1]
         pol = pol_guess[ii1,:]
-        root= optimize.fsolve(sysOfEqs, pol, args=(state,gridZero))
-        polInt[ii1,:] = root
+        root = optimize.root(sysOfEqs, pol, args=(state,gridZero), method='hybr')
+        polInt[ii1,:] = root.x
 
     # Add the new function values to grid1
     grid.loadNeededPoints(polInt)

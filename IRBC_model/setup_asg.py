@@ -8,6 +8,7 @@ govern the adaptivity process.
 import numpy as np
 import Tasmanian
 from parameters import *
+from scipy import optimize
 
 
 ################################################################################
@@ -71,16 +72,35 @@ polGuess = np.zeros((aNum,nPols))
 
 # Guesses for the capital policies and investment constraint multipliers
 for i0 in range(nCountries):
-    polGuess[:,i0] = aPoints[:,i0]
+    polGuess[:,i0] = aPoints[:,i0]*(1.0-delta)
 
     if typeIRBC=='non-smooth':
         polGuess[:,nCountries+1+i0] = -delta*aPoints[:,i0]
 
 # Guess for the aggregate ressource constraint multiplier
-for i1 in range(nCountries):
-    polGuess[:,nCountries] += np.exp(aPoints[:,nCountries+i1])*A_tfp*aPoints[:,i1]**zeta - delta*aPoints[:,i1]
+#for i1 in range(nCountries):
+#    polGuess[:,nCountries] += np.exp(aPoints[:,nCountries+i1])*A_tfp*aPoints[:,i1]**zeta - delta*aPoints[:,i1]
 
-polGuess[:,nCountries] = (polGuess[:,nCountries]/(nCountries*pareto**(1.0/gamma)))**(-gamma)
+#polGuess[:,nCountries] = (polGuess[:,nCountries]/(nCountries*pareto**(1.0/gamma)))**(-gamma)
+#print(polGuess[:,nCountries])
+
+
+def ARC_zero(lam_gues):
+    
+    res = 0.0
+    
+    for i1 in range(nCountries):
+        res += np.exp(aPoints[i0,nCountries+i1])*A_tfp*aPoints[i0,i1]**zeta - (-delta*kappa/2.0)**2 - (lam_gues/pareto[i1])**(-gamma[i1])
+    
+    return res
+
+for i0 in range(aNum):
+    root = optimize.root(ARC_zero, 0.1, method='lm')
+    polGuess[i0,nCountries] = root.x
+    #print(polGuess[i0,nCountries])
+    if root.success!= 1:
+        print(root.message)
+
 
 # Load function values into grid structure
 grid0.loadNeededPoints(polGuess)
