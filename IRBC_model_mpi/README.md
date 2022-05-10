@@ -1,6 +1,6 @@
 # The IRBC Benchmark Model
 
-This script provides code, parallelized with [MPI4PY](https://mpi4py.readthedocs.io/en/stable/), to solve the benchmark model in section 3 of the review article paper by [Brumm, Krause, Schaab, & Scheidegger (2022)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3979412). The simple parallelization approach we follow here adopts ideas from [Brumm & Scheidegger (2017), Section 4](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA12216) and can, in the case of large sparse grids, speed up the time-to-solution by orders of magnitude.
+This script provides code, parallelized with [MPI4PY](https://mpi4py.readthedocs.io/en/stable/), to solve the benchmark model in section 3 of the review article paper by [Brumm, Krause, Schaab, & Scheidegger (2022)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3979412). The simple parallelization approach we follow here adopts ideas from [Brumm & Scheidegger (2017), Section 4](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA12216), and can, in the case of large sparse grids, speed up the time-to-solution by orders of magnitude.
 
 ### Prerequisites / Installation
 
