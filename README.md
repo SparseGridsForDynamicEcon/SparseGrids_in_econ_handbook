@@ -54,7 +54,7 @@ The benchmark IRBC model code can be found here:
 
 The benchmark IRBC model code, parallelized with MPI, can be found here:
 
-[![Generic badge 4](https://img.shields.io/badge/benchmark-IRBC-green)](IRBC_model_mpi)
+[![Generic badge 4](https://img.shields.io/badge/benchmark-IRBC_mpi-green)](IRBC_model_mpi)
 
 
 The benchmark Aiyagari model code can be found here:
