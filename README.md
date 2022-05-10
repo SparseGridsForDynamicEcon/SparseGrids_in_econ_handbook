@@ -30,7 +30,7 @@ e\nd{align*}
 
 We generate sparse grid as well as adaptive sparse grid approximations to the function and measure their accuracy as follows: We randomly generate 10,000 uniformly distributed test points, and compute the maximum error and the L2-error.
 
-**Benchmark model in discrete time:** To illustrate how (adaptive) sparse grids can be applied to solve economic models in discrete time, we provide an example in python, which solves a multi-country real business cycle model with and without irreversible investment, where the former is presented in [Section 3 of the review article](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3979412) (for more details on this model, see also [Brumm & Scheidegger (2017)](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA12216)).
+**Benchmark model in discrete time:** To illustrate how (adaptive) sparse grids can be applied to solve economic models in discrete time, we provide an (MPI-parallelized) example in python, which solves a multi-country real business cycle model with and without irreversible investment, where the former is presented in [Section 3 of the review article](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3979412) (for more details on this model, see also [Brumm & Scheidegger (2017)](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA12216)).
 
 **Benchmark model in continuous time:** To illustrate how (adaptive) sparse grids can be applied to solve economic models in continuous time, we provide an example which solves an Aiyagari-type model with a jump in the capital tax rate, as presented in [Section 4 of the review article](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3979412) (for more details on this model, see also [Schaab (2020)](https://scholar.harvard.edu/andreasschaab/publications/micro-and-macro-uncertainty))
 
@@ -93,7 +93,7 @@ Brumm, Johannes and Krause, Christopher and Schaab, Andreas and Scheidegger, Sim
 author = {Brumm, Johannes and Krause, Christopher and Schaab, Andreas and Scheidegger, Simon},
 title = {Sparse Grids for Dynamic Economic Models},
 journal={Available at SSRN 3979412},
-year = {2021}
+year = {2022}
 }
 ```
 
