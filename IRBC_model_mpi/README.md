@@ -50,7 +50,7 @@ We provide these in `./data`. A list of .py-files that are involved in the itera
 #### MPI
 
 The solutions during time-iteration can be embarassingly parallelized via MPI. To use this,
-make sure mpi4py is set up, export OMP_NUM_THREADS=1, and then run (e.g. with 4 phyiscal cores):
+make sure mpi4py is set up, `export OMP_NUM_THREADS=1`, and then run (e.g. with 4 phyiscal cores):
 
 ```
 mpirun -np 4 python mainASG.py
