@@ -1,16 +1,17 @@
 # The IRBC Benchmark Model
 
-This script provides the code used to model and solve the benchmark model in section 3 of the review article paper by [Brumm, Krause, Schaab, & Scheidegger (2021)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3979412). 
+This script provides code, parallelized with [MPI4PY](https://mpi4py.readthedocs.io/en/stable/), to solve the benchmark model in section 3 of the review article paper by [Brumm, Krause, Schaab, & Scheidegger (2022)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3979412). The simple parallelization approach we follow here adopts ideas from [Brumm & Scheidegger (2017), Section 4](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA12216) and can, in the case of large sparse grids, speed up the time-to-solution by orders of magnitude.
 
 ### Prerequisites / Installation
 
-To run the benchmark IRBC model, it is necessary that Tasmanian is installed. Tasmanian is included in the
+To run the benchmark IRBC model in parallel, it is necessary that Tasmanian as well as mpi4py is installed. Tasmanian is included in the
 Python Pip index: https://pypi.org/project/Tasmanian/
 
 ```shell
 $ python3 -m pip install scikit-build packaging numpy --user (required dependencies)
 $ python3 -m pip install Tasmanian --user                    (user installation)
 $ python3 -m pip install Tasmanian                           (virtual env installation) 
+$ python3 -m pip install pip install mpi4py                  
 ```
 Further information on alternative installation procedures can be found here: https://tasmanian.ornl.gov/documentation/md_Doxygen_Installation.html
 
@@ -45,14 +46,22 @@ b) `savefreq` determines the frequency at which the grid structure is stored
 The default setting for savefreq is 10 such that the grid structure from every 10th iteration is stored. 
 We provide these in `./data`. A list of .py-files that are involved in the iterative process can be found below.
 
+
 #### MPI
 
 The solutions during time-iteration can be embarassingly parallelized via MPI. To use this,
-make sure mpi4py is set up and then run (e.g. with 4 phyiscal cores):
+make sure mpi4py is set up, export OMP_NUM_THREADS=1, and then run (e.g. with 4 phyiscal cores):
 
 ```
 mpirun -np 4 python mainASG.py
 ```
+
+Depending on the particular installation of MPI, one sometimes has to slightly alter the run command as follows to avoid performance bottlenecks:
+```
+mpirun --bind-to core -np 4 python mainASG.py
+```
+The flag [--bind-to core](https://www.open-mpi.org/doc/v3.0/man1/mpirun.1.php) binds processes to cores.
+
 
 ### Mode 2: Postprocessing only
 If you want to run the postprocessing without computing the model solution, you can use the following
