@@ -52,6 +52,10 @@ The benchmark IRBC model code can be found here:
 
 [![Generic badge 3](https://img.shields.io/badge/benchmark-IRBC-green)](IRBC_model)
 
+The benchmark IRBC model code, parallelized with MPI, can be found here:
+
+[![Generic badge 4](https://img.shields.io/badge/benchmark-IRBC-green)](IRBC_model_mpi)
+
 
 The benchmark Aiyagari model code can be found here:
 
@@ -71,6 +75,7 @@ Tasmanian is included in the Python Pip index: https://pypi.org/project/Tasmania
 $ python3 -m pip install scikit-build packaging numpy --user (required dependencies)
 $ python3 -m pip install Tasmanian --user                    (user installation)
 $ python3 -m pip install Tasmanian                           (virtual env installation) 
+$ python3 -m pip install mpi4py                              (MPI, to run the IRBC model in parallel)
 ```
 Further information on alternative installation procedures can be found here: https://tasmanian.ornl.gov/documentation/md_Doxygen_Installation.html
 
