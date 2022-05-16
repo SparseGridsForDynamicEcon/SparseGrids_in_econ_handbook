@@ -9,7 +9,6 @@ f_d(\vec{x}) = \max(0,1-e^{\frac{1}{2}-(\prod_{i=1}^d(x_i+\frac{1}{5}))^{\frac{1
 ](https://render.githubusercontent.com/render/math?math=%5CLarge+%5Cdisplaystyle+%5Cbegin%7Balign%2A%7D%0Af_d%28%5Cvec%7Bx%7D%29+%3D+%5Cmax%280%2C1-e%5E%7B%5Cfrac%7B1%7D%7B2%7D-%28%5Cprod_%7Bi%3D1%7D%5Ed%28x_i%2B%5Cfrac%7B1%7D%7B5%7D%29%29%5E%7B%5Cfrac%7B1%7D%7Bd%7D%7D%7D%29%2C%5C%3B%5C%2C%5Ctext%7Bwith%7D%5C%2C%5Cvec%7Bx%7D%3D%5C%7Bx_1%2C%5Cdots%2Cx_d%5C%7D%5Cin%5B0%2C1%5D%5Ed%0A%5Cend%7Balign%2A%7D%0A)
 
 as described in [Section 2.4](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3979412). We generate sparse grid as well as adaptive sparse grid approximations to the function and measure their accuracy as follows: We randomly generate 10,000 uniformly distributed test points, and compute the maximum error and the L2-error.
-Christopher, PLEASE EXPLAIN HERE ALSO what we do, different refinement levels for the fix grid, and the adaptive sparse grid.
 
 The code is organized as follows:
 
@@ -43,12 +42,12 @@ $ python3 -m pip install Tasmanian                           (virtual env instal
 ## Usage
 Launch the python code with
 ```shell
-    $ cd <PATH to the repository>/handbook_sparse_grids/Analytical_example
+    $ cd <PATH to the repository>/SparseGridsForDynamicEcon/SparseGrids_in_econ_handbook/Analytical_example
     $ python 2D_example.py
 ```
 or alternatively (Jupyter notebook)
 
 ```shell
-    $ cd <PATH to the repository>/handbook_sparse_grids/Analytical_example
+    $ cd <PATH to the repository>/SparseGridsForDynamicEcon/SparseGrids_in_econ_handbook/Analytical_example
     $ jupyter-notebook 2D_example.ipynb
 ```
