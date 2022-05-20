@@ -66,18 +66,13 @@ The benchmark Aiyagari model code can be found here:
 
 To run the code with the analytical examples, follow the instructions below. For instructions on how to run the benchmark international real business cycle (IRBC) model, see the corresponding instructions here: [IRBC README](IRBC_model).
 
-
-**TASMANIAN 7.7**
-
-Tasmanian is included in the Python Pip index: https://pypi.org/project/Tasmanian/
-
 ```shell
 $ python3 -m pip install scikit-build packaging numpy --user (required dependencies)
 $ python3 -m pip install Tasmanian --user                    (user installation)
 $ python3 -m pip install Tasmanian                           (virtual env installation) 
 $ python3 -m pip install mpi4py                              (MPI, to run the IRBC model in parallel)
 ```
-Further information on alternative installation procedures can be found here: https://tasmanian.ornl.gov/documentation/md_Doxygen_Installation.html
+Further information on alternative installation procedures for **TASMANIAN** can be found here: https://tasmanian.ornl.gov/documentation/md_Doxygen_Installation.html
 
 ## Support
 This work is generously supported by grants from the [Swiss National Science Foundation](https://www.snf.ch) under project IDs “New methods for asset pricing with frictions”, "Can economic policy mitigate climate change", and the [Enterprise for Society (E4S)](https://e4s.center).
