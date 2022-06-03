@@ -188,12 +188,6 @@ def Euler_error(x,state,pols):
     capPolicies = x[0:nCountries]
     lamb = x[nCountries]
 
-    if typeIRBC=='non-smooth':
-
-        gzAlphas = x[nCountries+1:]
-        gzAlphaPlus = np.maximum(0.0,gzAlphas)
-        gzAlphaMinus = np.maximum(0.0,-gzAlphas)
-
     Integrands = np.empty((numNodes,nCountries))
     newstate = np.empty(nCountries)
     captomtom = np.empty(nCountries)
