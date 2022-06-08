@@ -54,7 +54,7 @@ surplThreshold = 1e-3
 maxRef = 1
 # Maximum Level of ASG
 maxRefLevel = gridDepth + maxRef
-# Outputs that are considered in the refinment process (-1 implies that all outputs are considered)
+# Outputs that are considered in the refinement process (-1 implies that all outputs are considered)
 dimRef = -1
 # Type of grid refinements
 typeRefinement = 'classic'
@@ -78,12 +78,8 @@ for i0 in range(nCountries):
         polGuess[:,nCountries+1+i0] = -delta*aPoints[:,i0]
 
 # Guess for the aggregate ressource constraint multiplier
-#for i1 in range(nCountries):
-#    polGuess[:,nCountries] += np.exp(aPoints[:,nCountries+i1])*A_tfp*aPoints[:,i1]**zeta - delta*aPoints[:,i1]
-
-#polGuess[:,nCountries] = (polGuess[:,nCountries]/(nCountries*pareto**(1.0/gamma)))**(-gamma)
-#print(polGuess[:,nCountries])
-
+# We use a nonlinear equation solver to find the ARC multipliers that are consistent
+# with the guesses for the capital policies and investment constraint multipliers
 
 def ARC_zero(lam_gues):
     
@@ -97,7 +93,7 @@ def ARC_zero(lam_gues):
 for i0 in range(aNum):
     root = optimize.root(ARC_zero, 0.1, method='lm')
     polGuess[i0,nCountries] = root.x
-    #print(polGuess[i0,nCountries])
+    # Print the status in case the solver did not find the root
     if root.success!= 1:
         print(root.message)
 
