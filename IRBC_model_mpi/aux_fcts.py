@@ -75,3 +75,21 @@ def AdjCost_ktom(ktod,ktom):
 
 
     return AdjCostktom
+
+
+################################################################################
+#                  Residual of aggregate resource constraint                   #
+################################################################################
+    
+# This function is used to compute an initial guess for the ARC multiplier
+# It computes the residual of the aggregate resource constraint given a
+# guess for lambda and a grid point
+
+def ARC_zero(lam_gues,gridPt):
+    
+    res = 0.0
+    
+    for i1 in range(nCountries):
+        res += np.exp(gridPt[nCountries+i1])*A_tfp*gridPt[i1]**zeta - (-delta*kappa/2.0)**2 - (lam_gues/pareto[i1])**(-gamma[i1])
+    
+    return res
