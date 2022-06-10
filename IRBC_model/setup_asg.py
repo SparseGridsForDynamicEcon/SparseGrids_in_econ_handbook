@@ -9,6 +9,7 @@ import numpy as np
 import Tasmanian
 from parameters import *
 from scipy import optimize
+from aux_fcts import ARC_zero
 
 
 ################################################################################
@@ -68,30 +69,29 @@ scaleCorr[0:nCountries] = 1
 #                             Initialization                                   #
 ################################################################################
 
+# Our time iteration algorithm requires the initialization of policy functions,
+# as these are necessary to interpolate for next period's policies. We make an
+# educated guess here, assuming that capital choices are equal to the respective
+# non-depreciated capital stock. This implies for the non-smooth model that the 
+# irreversibility constraint is binding everywhere.
+
 polGuess = np.zeros((aNum,nPols))
 
-# Guesses for the capital policies and investment constraint multipliers
+# Guesses for the capital policies and investment constraint multipliers:
+
 for i0 in range(nCountries):
     polGuess[:,i0] = aPoints[:,i0]*(1.0-delta)
 
     if typeIRBC=='non-smooth':
         polGuess[:,nCountries+1+i0] = -delta*aPoints[:,i0]
 
-# Guess for the aggregate ressource constraint multiplier
+# Guess for the aggregate ressource constraint multiplier:
+#
 # We use a nonlinear equation solver to find the ARC multipliers that are consistent
-# with the guesses for the capital policies and investment constraint multipliers
-
-def ARC_zero(lam_gues):
-    
-    res = 0.0
-    
-    for i1 in range(nCountries):
-        res += np.exp(aPoints[i0,nCountries+i1])*A_tfp*aPoints[i0,i1]**zeta - (-delta*kappa/2.0)**2 - (lam_gues/pareto[i1])**(-gamma[i1])
-    
-    return res
+# with the guesses for the capital policies and investment constraint multipliers.
 
 for i0 in range(aNum):
-    root = optimize.root(ARC_zero, 0.1, method='lm')
+    root = optimize.root(ARC_zero, 0.1, method='lm', args=(aPoints[i0,:]))
     polGuess[i0,nCountries] = root.x
     # Print the status in case the solver did not find the root
     if root.success!= 1:
