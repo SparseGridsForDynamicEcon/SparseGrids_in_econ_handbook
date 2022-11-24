@@ -5,7 +5,7 @@
 </p>
 
 Sparse grid methods are a versatile tool to compute recursive equilibria in dynamic stochastic economic models. This code repository contains materials
-accompanying the review article entitled ["Sparse grids for dynamic economic models"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3979412). 
+accompanying the review article entitled ["Sparse grids for dynamic economic models"](https://oxfordre.com/economics/view/10.1093/acrefore/9780190625979.001.0001/acrefore-9780190625979-e-820). 
 
 The goal of this repository is to make sparse grid methods easily accessible to the computational economics and finance community. 
 Thus, all illustrative code examples are using [Tasmanian](https://tasmanian.ornl.gov), a high-quality open source sparse grid library. 
