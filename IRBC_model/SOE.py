@@ -65,7 +65,7 @@ def sysOfEqs(x,state,grid):
     # Aggregate resource constraint
     for ires2 in range(nCountries):
         res[nCountries] += F(capStates[ires2],tfpStates[ires2]) + (1.0-delta)*capStates[ires2] - capPolicies[ires2]\
-                            - AdjCost(capStates[ires2],capPolicies[ires2]) - (lamb/pareto[ires2])**(-1.0/gamma[ires2])
+                            - AdjCost(capStates[ires2],capPolicies[ires2]) - (lamb/pareto[ires2])**(-gamma[ires2])
 
 
 
